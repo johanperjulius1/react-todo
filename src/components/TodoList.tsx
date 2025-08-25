@@ -13,6 +13,13 @@ export default function TodoList() {
         setUserInput(event.target.value)
     }
 
+    function handleEdit() {
+        console.log("edit")
+    }
+
+    function handleDelete() {
+        console.log("delete")
+    }
 
     return (
         <section>
@@ -21,6 +28,8 @@ export default function TodoList() {
                 isCompleted={isCompleted}
                 userInput={userInput}
                 onChange={handleUserInput}
+                onEdit={handleEdit}
+                onDelete={handleDelete}
             />
             <p>first item</p>
             <p>second item</p>
