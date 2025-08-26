@@ -26,7 +26,7 @@ export default function TodoItem({ isCompleted, onToggle, userInput, onChange, o
             ) : (
                 <p>{userInput}</p>
             )}
-            <button onClick={onEdit}>Edit</button>
+            {isEdit ? <button onClick={onEdit}>save</button> : (<button onClick={onEdit}>Edit</button>)}
             <button onClick={onDelete}>Delete</button>
         </div>
     )
