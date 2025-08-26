@@ -4,6 +4,7 @@ import TodoItem from "./TodoItem"
 export default function TodoList() {
     const [isCompleted, setIsCompleted] = useState(false)
     const [userInput, setUserInput] = useState("")
+    const [showTodo, setShowTodo] = useState(true)
 
     function handleCompleted() {
         setIsCompleted(isCompleted => !isCompleted)
@@ -18,19 +19,21 @@ export default function TodoList() {
     }
 
     function handleDelete() {
-        console.log("delete")
+        setShowTodo(false)
     }
 
     return (
         <section>
-            <TodoItem
-                onToggle={handleCompleted}
-                isCompleted={isCompleted}
-                userInput={userInput}
-                onChange={handleUserInput}
-                onEdit={handleEdit}
-                onDelete={handleDelete}
-            />
+            {showTodo && (
+                <TodoItem
+                    onToggle={handleCompleted}
+                    isCompleted={isCompleted}
+                    userInput={userInput}
+                    onChange={handleUserInput}
+                    onEdit={handleEdit}
+                    onDelete={handleDelete}
+                />
+            )}
             <p>first item</p>
             <p>second item</p>
         </section>
