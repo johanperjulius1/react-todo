@@ -5,9 +5,10 @@ interface TodoItemProps {
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     onEdit: () => void;
     onDelete: () => void;
+    isEdit: boolean;
 }
 
-export default function TodoItem({ isCompleted, onToggle, userInput, onChange, onEdit, onDelete }: TodoItemProps) {
+export default function TodoItem({ isCompleted, onToggle, userInput, onChange, onEdit, onDelete, isEdit }: TodoItemProps) {
     return (
         <div>
             <input
@@ -15,12 +16,16 @@ export default function TodoItem({ isCompleted, onToggle, userInput, onChange, o
                 checked={isCompleted}
                 onChange={onToggle}
             />
-            <input
-                type="text"
-                placeholder="Enter todo..."
-                onChange={onChange}
-                value={userInput}
-            />
+            {isEdit ? (
+                <input
+                    type="text"
+                    placeholder="Enter todo..."
+                    onChange={onChange}
+                    value={userInput}
+                />
+            ) : (
+                <p>{userInput}</p>
+            )}
             <button onClick={onEdit}>Edit</button>
             <button onClick={onDelete}>Delete</button>
         </div>

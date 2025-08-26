@@ -5,7 +5,7 @@ export default function TodoList() {
     const [isCompleted, setIsCompleted] = useState(false)
     const [userInput, setUserInput] = useState("")
     const [showTodo, setShowTodo] = useState(true)
-
+    const [isEdit, setIsEdit] = useState(true)
     function handleCompleted() {
         setIsCompleted(isCompleted => !isCompleted)
     }
@@ -15,7 +15,7 @@ export default function TodoList() {
     }
 
     function handleEdit() {
-        console.log("edit")
+        setIsEdit(!isEdit)
     }
 
     function handleDelete() {
@@ -32,6 +32,7 @@ export default function TodoList() {
                     onChange={handleUserInput}
                     onEdit={handleEdit}
                     onDelete={handleDelete}
+                    isEdit={isEdit}
                 />
             )}
             <p>first item</p>
