@@ -6,18 +6,22 @@
   margin: 16px 0;
 }
 
+.checkboxContainer {
+  position: relative;
+  display: inline-block;
+}
+
 .checkbox {
-  width: 20px;
-  height: 20px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   border: 2px solid #666;
   appearance: none;
   cursor: pointer;
-  position: relative;
 }
 
 .checkbox:checked {
-  background-color: #2d5a2d;
+  background-color: #219b21;
 }
 
 .checkbox:not(:checked) {
@@ -26,10 +30,10 @@
 
 .checkmark {
   position: absolute;
-  left: 8px;
-  top: 2px;
-  width: 6px;
-  height: 10px;
+  left: 15px;
+  top: 10px;
+  width: 7px;
+  height: 12px;
   border: 2px solid white;
   border-top: none;
   border-left: none;

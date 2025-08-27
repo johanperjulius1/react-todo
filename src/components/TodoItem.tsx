@@ -13,15 +13,17 @@ interface TodoItemProps {
 export default function TodoItem({ isCompleted, onToggle, userInput, onChange, onEdit, onDelete, isEdit }: TodoItemProps) {
     return (
         <div className={styles.todoItem}>
-            <input
-                type="checkbox"
-                checked={isCompleted}
-                onChange={onToggle}
-                className={styles.checkbox}
-            />
-            {isCompleted && (
-                <div className={styles.checkmark} />
-            )}
+            <div className={styles.checkboxContainer}>
+                <input
+                    type="checkbox"
+                    checked={isCompleted}
+                    onChange={onToggle}
+                    className={styles.checkbox}
+                />
+                {isCompleted && (
+                    <div className={styles.checkmark} />
+                )}
+            </div>
             {isEdit ? (
                 <input
                     type="text"
