@@ -1,3 +1,5 @@
+import styles from './TodoItem.module.css'
+
 interface TodoItemProps {
     isCompleted: boolean;
     onToggle: () => void;
@@ -10,24 +12,50 @@ interface TodoItemProps {
 
 export default function TodoItem({ isCompleted, onToggle, userInput, onChange, onEdit, onDelete, isEdit }: TodoItemProps) {
     return (
-        <div>
+        <div className={styles.todoItem}>
             <input
                 type="checkbox"
                 checked={isCompleted}
                 onChange={onToggle}
+                className={styles.checkbox}
             />
+            {isCompleted && (
+                <div className={styles.checkmark} />
+            )}
             {isEdit ? (
                 <input
                     type="text"
                     placeholder="Enter todo..."
                     onChange={onChange}
                     value={userInput}
+                    className={styles.todoInput}
                 />
             ) : (
-                <p style={{ textDecoration: isCompleted ? 'line-through' : 'none' }}>{userInput}</p>
+                <p className={`${styles.todoText} ${isCompleted ? styles.completed : ''}`}>
+                    {userInput}
+                </p>
             )}
-            {isEdit ? <button onClick={onEdit}>save</button> : (<button onClick={onEdit}>Edit</button>)}
-            <button onClick={onDelete}>Delete</button>
+            {isEdit ? (
+                <button
+                    onClick={onEdit}
+                    className={styles.button}
+                >
+                    Save
+                </button>
+            ) : (
+                <button
+                    onClick={onEdit}
+                    className={`${styles.button} ${styles.underline}`}
+                >
+                    Edit
+                </button>
+            )}
+            <button
+                onClick={onDelete}
+                className={styles.button}
+            >
+                Delete
+            </button>
         </div>
     )
 }

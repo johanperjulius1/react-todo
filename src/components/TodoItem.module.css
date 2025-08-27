@@ -1,0 +1,72 @@
+.todoItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #666;
+  appearance: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.checkbox:checked {
+  background-color: #2d5a2d;
+}
+
+.checkbox:not(:checked) {
+  background-color: transparent;
+}
+
+.checkmark {
+  position: absolute;
+  left: 8px;
+  top: 2px;
+  width: 6px;
+  height: 10px;
+  border: 2px solid white;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+.todoInput {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background-color: #1a1a1a;
+  color: white;
+  font-size: 16px;
+}
+
+.todoText {
+  flex: 1;
+  margin: 0;
+  font-size: 16px;
+  color: white;
+}
+
+.todoText.completed {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.button {
+  background: none;
+  border: none;
+  color: #ffd700;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.button.underline {
+  text-decoration: underline;
+}
