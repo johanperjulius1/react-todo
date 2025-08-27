@@ -24,7 +24,7 @@ export default function TodoItem({ isCompleted, onToggle, userInput, onChange, o
                     value={userInput}
                 />
             ) : (
-                <p>{userInput}</p>
+                <p style={{ textDecoration: isCompleted ? 'line-through' : 'none' }}>{userInput}</p>
             )}
             {isEdit ? <button onClick={onEdit}>save</button> : (<button onClick={onEdit}>Edit</button>)}
             <button onClick={onDelete}>Delete</button>
