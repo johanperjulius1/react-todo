@@ -27,7 +27,7 @@ export default function TodoList() {
         <section>
             {showTodo && (
                 <TodoItem
-                    onToggle={handleCompleted}
+                    onComplete={handleCompleted}
                     isCompleted={isCompleted}
                     userInput={userInput}
                     onChange={handleUserInput}

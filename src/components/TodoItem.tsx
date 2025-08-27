@@ -2,7 +2,7 @@ import styles from './TodoItem.module.css'
 
 interface TodoItemProps {
     isCompleted: boolean;
-    onToggle: () => void;
+    onComplete: () => void;
     userInput: string;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     onEdit: () => void;
@@ -10,14 +10,14 @@ interface TodoItemProps {
     isEdit: boolean;
 }
 
-export default function TodoItem({ isCompleted, onToggle, userInput, onChange, onEdit, onDelete, isEdit }: TodoItemProps) {
+export default function TodoItem({ isCompleted, onComplete, userInput, onChange, onEdit, onDelete, isEdit }: TodoItemProps) {
     return (
         <div className={styles.todoItem}>
             <div className={styles.checkboxContainer}>
                 <input
                     type="checkbox"
                     checked={isCompleted}
-                    onChange={onToggle}
+                    onChange={onComplete}
                     className={styles.checkbox}
                 />
                 {isCompleted && (
