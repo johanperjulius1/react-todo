@@ -1,43 +1,52 @@
 import { useState } from "react"
 import TodoItem from "./TodoItem"
+import type { ListOfTodo } from "../types/todo"
 
 export default function TodoList() {
-    const [isCompleted, setIsCompleted] = useState(false)
-    const [userInput, setUserInput] = useState("")
-    const [showTodo, setShowTodo] = useState(true)
-    const [isEdit, setIsEdit] = useState(true)
-   
-    function handleCompleted() {
-        setIsCompleted(isCompleted => !isCompleted)
+    const [todos, setTodos] = useState<ListOfTodo>([{
+        text: "call mom",
+        completed: false,
+        isEdit: false
+    }, {
+        text: "call dad",
+        completed: true,
+        isEdit: false
+    }])
+
+    function handleCompleted(index: number) {
+        setTodos(prev => prev.map((todo, i) =>
+            i === index ? { ...todo, completed: !todo.completed } : todo
+        ))
     }
 
-    function handleUserInput(event: React.ChangeEvent<HTMLInputElement>) {
-        setUserInput(event.target.value)
+    function handleUserInput(index: number, event: React.ChangeEvent<HTMLInputElement>) {
+        setTodos(prev => prev.map((todo, i) =>
+            i === index ? { ...todo, text: event.target.value } : todo
+        ))
     }
 
-    function handleEdit() {
-        setIsEdit(!isEdit)
+    function handleEdit(index: number) {
+        setTodos(prev => prev.map((todo, i) =>
+            i === index ? { ...todo, isEdit: !todo.isEdit } : todo
+        ))
     }
 
-    function handleDelete() {
-        setShowTodo(false)
+    function handleDelete(index: number) {
+        setTodos(prev => prev.filter((_, i) => i !== index))
     }
 
     return (
         <section>
-            {showTodo && (
+            {todos.map((todo, index) => (
                 <TodoItem
-                    onComplete={handleCompleted}
-                    isCompleted={isCompleted}
-                    userInput={userInput}
-                    onChange={handleUserInput}
-                    onEdit={handleEdit}
-                    onDelete={handleDelete}
-                    isEdit={isEdit}
+                    key={index}
+                    todo={todo}
+                    onComplete={() => handleCompleted(index)}
+                    onChange={(event) => handleUserInput(index, event)}
+                    onEdit={() => handleEdit(index)}
+                    onDelete={() => handleDelete(index)}
                 />
-            )}
-            <p>first item</p>
-            <p>second item</p>
+            ))}
         </section>
     )
 }

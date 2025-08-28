@@ -1,43 +1,42 @@
 import styles from './TodoItem.module.css'
+import type { Todo } from '../types/todo'
 
 interface TodoItemProps {
-    isCompleted: boolean;
+    todo: Todo
     onComplete: () => void;
-    userInput: string;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     onEdit: () => void;
     onDelete: () => void;
-    isEdit: boolean;
 }
 
-export default function TodoItem({ isCompleted, onComplete, userInput, onChange, onEdit, onDelete, isEdit }: TodoItemProps) {
+export default function TodoItem({ todo, onComplete, onChange, onEdit, onDelete }: TodoItemProps) {
     return (
         <div className={styles.todoItem}>
             <div className={styles.checkboxContainer}>
                 <input
                     type="checkbox"
-                    checked={isCompleted}
+                    checked={todo.completed}
                     onChange={onComplete}
                     className={styles.checkbox}
                 />
-                {isCompleted && (
+                {todo.completed && (
                     <div className={styles.checkmark} />
                 )}
             </div>
-            {isEdit ? (
+            {todo.isEdit ? (
                 <input
                     type="text"
                     placeholder="Enter todo..."
                     onChange={onChange}
-                    value={userInput}
+                    value={todo.text}
                     className={styles.todoInput}
                 />
             ) : (
-                <p className={`${styles.todoText} ${isCompleted ? styles.completed : ''}`}>
-                    {userInput}
+                <p className={`${styles.todoText} ${todo.completed ? styles.completed : ''}`}>
+                    {todo.text}
                 </p>
             )}
-            {isEdit ? (
+            {todo.isEdit ? (
                 <button
                     onClick={onEdit}
                     className={styles.button}
