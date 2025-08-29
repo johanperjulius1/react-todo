@@ -65,7 +65,12 @@ export default function TodoList() {
 
     return (
         <section>
+            <label htmlFor="new-todo-input" className={styles.srOnly}>
+                Add new todo
+            </label>
             <input
+                id="new-todo-input"
+                name="new-todo"
                 type="text"
                 placeholder="Enter todo..."
                 onChange={handleNewTodoChange}
@@ -74,8 +79,10 @@ export default function TodoList() {
                 className={styles.todoInput}
             />
             <button
+                type="button"
                 onClick={handleAddTodo}
                 className={styles.button}
+                aria-label="Add new todo"
             >
                 Add
             </button>
