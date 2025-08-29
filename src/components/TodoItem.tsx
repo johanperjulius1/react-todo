@@ -10,6 +10,12 @@ interface TodoItemProps {
 }
 
 export default function TodoItem({ todo, onComplete, onChange, onEdit, onDelete }: TodoItemProps) {
+    function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+        if (event.key === "Enter") {
+            onEdit()
+        }
+    }
+
     return (
         <div className={styles.todoItem}>
             <div className={styles.checkboxContainer}>
@@ -28,6 +34,7 @@ export default function TodoItem({ todo, onComplete, onChange, onEdit, onDelete 
                     type="text"
                     placeholder="Enter todo..."
                     onChange={onChange}
+                    onKeyDown={handleKeyDown}
                     value={todo.text}
                     className={styles.todoInput}
                 />
